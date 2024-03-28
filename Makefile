@@ -4,12 +4,18 @@ MLX_DIR	=	./minilibx/
 MLX		=	$(MLX_DIR)libmlx.a
 
 CC		=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++98
+FLAGS	=	-Wall -Wextra -Werror -std=c++11
 LIBS	=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-INCD	=	-I ./ -I ./minilibx
+INCD	=	-I ./include -I ./minilibx
 
-SOURCE	=	mlxBase.cpp main.cpp
-OBJECT	=	$(SOURCE:.cpp=.o)
+SOURCE	=	src/main.cpp\
+			src/def/MlxBase.cpp\
+			src/def/Color.cpp\
+			src/def/Vector.cpp\
+			src/def/Ray.cpp\
+
+
+OBJECT	=	$(SOURCE:.cpp=.o)\
 
 .cpp.o:
 	$(CC) $(FLAGS) $(INCD) -c $< -o $(<:.cpp=.o)
@@ -28,3 +34,5 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	make -C $(MLX_DIR) clean
+
+re : fclean all
