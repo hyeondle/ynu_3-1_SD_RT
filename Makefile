@@ -36,3 +36,6 @@ fclean: clean
 	make -C $(MLX_DIR) clean
 
 re : fclean all
+
+run : all
+	./$(NAME)
