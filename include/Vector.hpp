@@ -68,7 +68,7 @@ inline Vector cross(const Vector &u, const Vector &v) {
 				  u.e[0] * v.e[1] - u.e[1] * v.e[0]);
 }
 
-inline Vector unit_vector(Vector v) {
+inline Vector unit(Vector v) {
 	return v / v.length();
 }
 
