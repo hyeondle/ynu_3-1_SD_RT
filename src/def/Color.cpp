@@ -21,7 +21,7 @@ void write_color(Mlx &mlx, const Vector &color, int x, int y) {
 	int ir = static_cast<int>(255.999 * color.x());
 	int ig = static_cast<int>(255.999 * color.y());
 	int ib = static_cast<int>(255.999 * color.z());
-	// pixel = (ir << 16) + (ig << 8) + ib;
-	int pixel = (ib << 16) | (ig << 8) | ir;
+	int pixel = (ir << 16) + (ig << 8) + ib;
+	// int pixel = (ib << 16) | (ig << 8) | ir;
 	mlx.locate_pixel(x, y, pixel);
 }

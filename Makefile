@@ -4,7 +4,7 @@ MLX_DIR	=	./minilibx/
 MLX		=	$(MLX_DIR)libmlx.a
 
 CC		=	c++
-FLAGS	=	-Wall -Wextra -Werror -std=c++11
+# FLAGS	=	-Wall -Wextra -Werror -std=c++11
 LIBS	=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 INCD	=	-I ./include -I ./minilibx
 
