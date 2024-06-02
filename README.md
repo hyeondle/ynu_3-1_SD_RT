@@ -8,3 +8,12 @@ MacOS
 how to run
 :
 make run
+
+
+todo : (2024/6/3)
+add object list (hittable list) -> as vector
+add few more object
+add phong model
+
+add key hook & event listener
+
