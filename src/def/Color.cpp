@@ -1,13 +1,13 @@
 #include "../../include/Color.hpp"
 #include "../../include/MlxBase.hpp"
 
-Color::Color() : Vector() {}
+color::color() : vector() {}
 
-Color::Color(double red, double green, double blue) : Vector(red, green, blue) {}
+color::color(double red, double green, double blue) : vector(red, green, blue) {}
 
-Color::Color(const Vector &v) : Vector(v) {}
+color::color(const vector &v) : vector(v) {}
 
-int Color::get_color(const Vector &color) {
+int color::get_color(const vector &color) {
 	int ir = static_cast<int>(255.999 * color.x());
 	int ig = static_cast<int>(255.999 * color.y());
 	int ib = static_cast<int>(255.999 * color.z());
@@ -17,7 +17,7 @@ int Color::get_color(const Vector &color) {
 	return (pixel);
 }
 
-void write_color(Mlx &mlx, const Vector &color, int x, int y) {
+void write_color(Mlx &mlx, const vector &color, int x, int y) {
 	int ir = static_cast<int>(255.999 * color.x());
 	int ig = static_cast<int>(255.999 * color.y());
 	int ib = static_cast<int>(255.999 * color.z());

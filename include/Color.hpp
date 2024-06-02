@@ -6,18 +6,18 @@
 
 class Mlx;
 
-class Color : public Vector {
+class color : public vector {
 	public:
-		Color();
-		Color(double red, double green, double blue);
-		Color(const Vector &v);
+		color();
+		color(double red, double green, double blue);
+		color(const vector &v);
 
 		int pixel;
 	public:
-		int get_color(const Vector &color);
+		int get_color(const vector &color);
 		// void write_color(Mlx &mlx,const Vector &color, int x, int y);
 };
 
-void write_color(Mlx &mlx, const Vector &color, int x, int y);
+void write_color(Mlx &mlx, const vector &color, int x, int y);
 
 #endif
