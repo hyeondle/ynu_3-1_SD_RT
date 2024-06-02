@@ -1,16 +1,16 @@
 #include "../../include/Ray.hpp"
 
-Ray::Ray() {}
-Ray::Ray(const Point &origin, const Vector &direction) : orig(origin), dir(direction) {}
+ray::ray() {}
+ray::ray(const point &origin, const vector &direction) : orig(origin), dir(direction) {}
 
-Point Ray::origin() const {
+point ray::origin() const {
 	return orig;
 }
 
-Vector Ray::direction() const {
+vector ray::direction() const {
 	return dir;
 }
 
-Point Ray::at(double t) const {
+point ray::at(double t) const {
 	return orig + t * dir;
 }

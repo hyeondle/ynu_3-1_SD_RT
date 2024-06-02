@@ -3,18 +3,18 @@
 
 #include "./Vector.hpp"
 
-class Ray {
+class ray {
 	public:
-		Ray();
-		Ray(const Point &origin, const Vector &direction);
+		ray();
+		ray(const point &origin, const vector &direction);
 
-		Point origin() const;
-		Vector direction() const;
-		Point at(double t) const;
+		point origin() const;
+		vector direction() const;
+		point at(double t) const;
 
 	private:
-		Point orig;
-		Vector dir;
+		point orig;
+		vector dir;
 };
 
 #endif
