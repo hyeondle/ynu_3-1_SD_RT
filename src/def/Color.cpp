@@ -11,17 +11,17 @@ int color::get_color(const vector &color) {
 	int ir = static_cast<int>(255.999 * color.x());
 	int ig = static_cast<int>(255.999 * color.y());
 	int ib = static_cast<int>(255.999 * color.z());
-	// pixel = (ir << 16) + (ig << 8) + ib;
-	pixel = (ib << 16) | (ig << 8) | ir;
+	pixel = (ir << 16) + (ig << 8) + ib;
+	// pixel = (ib << 16) | (ig << 8) | ir;
 
 	return (pixel);
 }
 
-void write_color(Mlx &mlx, const vector &color, int x, int y) {
+void write_color(Mlx *mlx, const vector &color, int x, int y) {
 	int ir = static_cast<int>(255.999 * color.x());
 	int ig = static_cast<int>(255.999 * color.y());
 	int ib = static_cast<int>(255.999 * color.z());
 	int pixel = (ir << 16) + (ig << 8) + ib;
 	// int pixel = (ib << 16) | (ig << 8) | ir;
-	mlx.locate_pixel(x, y, pixel);
+	mlx->locate_pixel(x, y, pixel);
 }

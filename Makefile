@@ -16,6 +16,7 @@ SOURCE	=	src/main.cpp\
 			src/def/Ray.cpp\
 			src/def/HitRecord.cpp\
 			src/def/HitList.cpp\
+			src/def/Interval.cpp\
 			src/def/Sphere.cpp\
 
 
