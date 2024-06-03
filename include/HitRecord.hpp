@@ -1,7 +1,7 @@
 #ifndef HITRECORD_HPP
 # define HITRECORD_HPP
 
-#include "./Ray.hpp"
+#include "./RTSet.hpp"
 
 class hit_record {
 	public :

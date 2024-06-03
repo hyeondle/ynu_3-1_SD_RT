@@ -1,8 +1,8 @@
 #ifndef SPHERE_HPP
 # define SPHERE_HPP
 
+#include "./RTSet.hpp"
 #include "./HitRecord.hpp"
-#include "./Vector.hpp"
 
 class sphere : public hittable {
 	public :

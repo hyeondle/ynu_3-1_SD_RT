@@ -1,9 +1,11 @@
 // #include "./minilibx/mlx.h"
-#include "../include/Color.hpp"
+#include "../include/RTSet.hpp"
+
 #include "../include/MlxBase.hpp"
-#include "../include/Vector.hpp"
-#include "../include/Ray.hpp"
-#include "../include/Color.hpp"
+#include "../include/HitRecord.hpp"
+#include "../include/HitList.hpp"
+#include "../include/Sphere.hpp"
+
 // #define WIDTH 1920
 // #define HEIGHT 1080
 
@@ -20,26 +22,11 @@
 // 	// 위 구조체들 일단 하나씩 올려놓기
 // };
 
-double hit_sphere(const point &center, double radius, const ray &r) {
-	vector oc = center - r.origin();
-	auto a = r.direction().length_squared();
-	auto h = dot(r.direction(), oc);
-	auto c = oc.length_squared() - radius*radius;
-	auto discriminant = h*h - a*c;
 
-	if (discriminant < 0) {
-		return -1.0;
-	} else {
-		// std::cout << "hit " << (-b - sqrt(discriminant)) / (2.0 * a) << std::endl;
-		return (h - sqrt(discriminant)) / a;
-	}
-}
-
-color ray_color(const ray &r) {
-	auto t = hit_sphere(point(0,0,-1), 0.5, r);
-	if (t > 0.0) {
-		vector N = unit(r.at(t) - vector(0,0,-1));
-		return 0.5 * color(N.x()+1, N.y()+1, N.z()+1);
+color ray_color(const ray &r, const hittable &world) {
+	hit_record rec;
+	if (world.hit(r, 0, infinity, rec)) {
+		return 0.5 * (rec.normal + color(1,1,1));
 	}
 
 	vector unit_direction = unit(r.direction());
@@ -60,6 +47,12 @@ int main()
 	//
 	int image_height = int(image_width / aspect_ratio);
 	image_height = (image_height < 1) ? 1 : image_height;
+
+	// world
+	hittable_list world;
+
+	world.add(make_shared<sphere>(point(0, 0, -1), 0.5));
+	world.add(make_shared<sphere>(point(0, -100.5, -1), 100));
 
 	// cam
 	auto focal_length = 1.0;
@@ -88,7 +81,7 @@ int main()
 			auto ray_direction = pixel_center - camera_center;
 			ray r(camera_center, ray_direction);
 
-			color pixel_color = ray_color(r);
+			color pixel_color = ray_color(r, world);
 			write_color(*mlx, pixel_color, i, j);
 		}
 	}

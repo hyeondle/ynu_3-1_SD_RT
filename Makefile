@@ -5,6 +5,7 @@ MLX		=	$(MLX_DIR)libmlx.a
 
 CC		=	c++
 # FLAGS	=	-Wall -Wextra -Werror -std=c++11
+FLAGS	=	-std=c++11
 LIBS	=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 INCD	=	-I ./include -I ./minilibx
 
@@ -13,6 +14,8 @@ SOURCE	=	src/main.cpp\
 			src/def/Color.cpp\
 			src/def/Vector.cpp\
 			src/def/Ray.cpp\
+			src/def/HitRecord.cpp\
+			src/def/Sphere.cpp\
 
 
 OBJECT	=	$(SOURCE:.cpp=.o)\

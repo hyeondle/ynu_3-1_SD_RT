@@ -2,7 +2,6 @@
 #define COLOR_HPP
 
 #include "./Vector.hpp"
-#include <iostream>
 
 class Mlx;
 
