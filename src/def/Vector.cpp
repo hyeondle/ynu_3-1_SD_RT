@@ -61,3 +61,11 @@ double vector::length() const {
 double vector::length_squared() const {
 	return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
 }
+
+vector vector::random() {
+	return vector(random_double(), random_double(), random_double());
+}
+
+vector vector::random(double min, double max) {
+	return vector(random_double(min, max), random_double(min, max), random_double(min, max));
+}
