@@ -11,6 +11,7 @@
 #define GAMMA_REFLECTANCE 0.1
 
 // c++ std using declarations
+using std::fabs;
 using std::make_shared;
 using std::shared_ptr;
 using std::sqrt;

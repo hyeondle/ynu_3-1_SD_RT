@@ -3,10 +3,13 @@
 
 #include "./RTSet.hpp"
 
+class material;
+
 class hit_record {
 	public :
 		point p;
 		vector normal;
+		shared_ptr<material> mat;
 		double t;
 		bool front_face;
 
