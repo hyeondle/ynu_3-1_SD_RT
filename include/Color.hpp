@@ -2,6 +2,7 @@
 #define COLOR_HPP
 
 #include "./Vector.hpp"
+#include "./Interval.hpp"
 
 class Mlx;
 
