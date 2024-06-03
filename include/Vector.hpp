@@ -2,6 +2,7 @@
 #define VECTOR_HPP
 
 #include <iostream>
+#include <./Utils.hpp>
 
 class vector {
 	public:
@@ -23,6 +24,9 @@ class vector {
 		vector& operator/=(const double t);
 		double length() const;
 		double length_squared() const;
+
+		static vector random();
+		static vector random(double min, double max);
 };
 
 using point = vector;
@@ -69,6 +73,26 @@ inline vector cross(const vector &u, const vector &v) {
 
 inline vector unit(vector v) {
 	return v / v.length();
+}
+
+inline vector random_in_unit_sphere() {
+	while (true) {
+		auto p = vector::random(-1, 1);
+		if (p.length_squared() < 1)
+			return p;
+	}
+}
+
+inline vector random_unit_vector() {
+	return unit(random_in_unit_sphere());
+}
+
+inline vector random_on_hemisphere(const vector &normal) {
+	vector on_unit_sphere = random_unit_vector();
+	if (dot(on_unit_sphere, normal) > 0.0)
+		return on_unit_sphere;
+	else
+		return -on_unit_sphere;
 }
 
 #endif

@@ -1,8 +1,8 @@
 #ifndef MLXBASE_HPP
 #define MLXBASE_HPP
 
-#define WIDTH 1280
-#define HEIGHT 720
+#define WIDTH 480
+#define HEIGHT 360
 
 class Mlx
 {

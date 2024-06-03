@@ -20,4 +20,11 @@ class color : public vector {
 
 void write_color(Mlx *mlx, const vector &color, int x, int y);
 
+inline double linear_to_gamma(double linear_component) {
+	if (linear_component > 0)
+		return sqrt(linear_component);
+
+	return 0;
+}
+
 #endif
