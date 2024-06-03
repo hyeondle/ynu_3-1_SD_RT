@@ -62,6 +62,11 @@ double vector::length_squared() const {
 	return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
 }
 
+bool vector::near_zero() const {
+	auto s = 1e-8;
+	return (fabs(e[0]) < s) && (fabs(e[1]) < s) && (fabs(e[2]) < s);
+}
+
 vector vector::random() {
 	return vector(random_double(), random_double(), random_double());
 }

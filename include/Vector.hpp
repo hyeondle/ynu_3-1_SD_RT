@@ -24,6 +24,7 @@ class vector {
 		vector& operator/=(const double t);
 		double length() const;
 		double length_squared() const;
+		bool near_zero() const;
 
 		static vector random();
 		static vector random(double min, double max);
@@ -93,6 +94,10 @@ inline vector random_on_hemisphere(const vector &normal) {
 		return on_unit_sphere;
 	else
 		return -on_unit_sphere;
+}
+
+inline vector reflect(const vector &v, const vector &n) {
+	return v - 2 * dot(v,n) * n;
 }
 
 #endif

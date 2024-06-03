@@ -3,7 +3,7 @@
 
 #include "RTSet.hpp"
 #include "HitRecord.hpp"
-
+#include "Material.hpp"
 #include "MlxBase.hpp"
 
 class camera {
@@ -85,8 +85,11 @@ class camera {
 
 			hit_record rec;
 			if (world.hit(r, interval(0.001, infinity), rec)) {
-				vector direction = rec.normal + random_unit_vector();
-				return GAMMA_REFLECTANCE * ray_color(ray(rec.p, direction), depth-1, world);
+				ray scattered;
+				color attenuation;
+				if (rec.mat->scatter(r, rec, attenuation, scattered))
+					return attenuation * ray_color(scattered, depth-1, world);
+					return color(0,0,0);
 			}
 			vector unit_direction = unit(r.direction());
 			double t = 0.5 * (unit_direction.y() + 1.0);
