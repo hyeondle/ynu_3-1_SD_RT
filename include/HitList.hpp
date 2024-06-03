@@ -3,7 +3,6 @@
 
 #include "./RTSet.hpp"
 #include "./HitRecord.hpp"
-
 #include <vector>
 
 class hittable_list : public hittable {
@@ -17,7 +16,7 @@ class hittable_list : public hittable {
 
 		void add(shared_ptr<hittable> object);
 
-		bool hit(const ray &r, double ray_tmin, double ray_tmax, hit_record &rec) const override;
+		bool hit(const ray &r, interval ray_t, hit_record &rec) const override;
 };
 
 #endif
