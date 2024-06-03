@@ -24,5 +24,6 @@ inline double degrees_to_radians(double degrees) {
 #include "./Ray.hpp"
 #include "./Vector.hpp"
 #include "./Color.hpp"
+#include "./Interval.hpp"
 
 #endif
