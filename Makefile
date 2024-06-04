@@ -17,7 +17,9 @@ SOURCE	=	src/main.cpp\
 			src/def/HitRecord.cpp\
 			src/def/HitList.cpp\
 			src/def/Interval.cpp\
+			src/def/AABB.cpp\
 			src/def/Sphere.cpp\
+			
 
 
 OBJECT	=	$(SOURCE:.cpp=.o)\
