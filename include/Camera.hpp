@@ -14,6 +14,11 @@ class camera {
 		int samples_per_pixel = 10;
 		int max_depth = 10;
 
+		double vfov = 90;
+		point lookfrom = point(0,0,0);
+		point lookat = point(0,0,-1);
+		vector vup = vector(0,1,0);
+
 		void render(const hittable &world, Mlx *mlx) {
 			initialize();
 			for (int j = 0; j < HEIGHT; j++) {
@@ -42,6 +47,7 @@ class camera {
 		point pixel00_loc;
 		vector pixel_delta_u;
 		vector pixel_delta_v;
+		vector u,v,w;
 
 		void initialize() {
 			image_height = int(image_width / aspect_ratio);
@@ -49,19 +55,25 @@ class camera {
 
 			pixel_samples_scale = 1.0 / samples_per_pixel;
 
-			center = point(0, 0, 0);
+			center = lookfrom;
 
-			auto focal_length = 1.0;
-			auto viewport_height = 2.0;
+			auto focal_length = (lookfrom - lookat).length();
+			auto theta = degrees_to_radians(vfov);
+			auto h = tan(theta/2);
+			auto viewport_height = 2 * h * focal_length;
 			auto viewport_width = viewport_height * (double(image_width) / image_height);
 
-			auto viewport_u = vector(viewport_width, 0, 0);
-			auto viewport_v = vector(0, -viewport_height, 0);
+			w = unit(lookfrom - lookat);
+			u = unit(cross(vup, w));
+			v = cross(w, u);
+
+			auto viewport_u = viewport_width * u;
+			auto viewport_v = viewport_height * -v;
 
 			pixel_delta_u = viewport_u / double(image_width);
 			pixel_delta_v = viewport_v / double(image_height);
 
-			auto viewport_upper_left = center - vector(0,0,focal_length) - viewport_u/2 - viewport_v/2;
+			auto viewport_upper_left = center - (focal_length * w) - viewport_u/2 - viewport_v/2;
 			pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 		}
 
