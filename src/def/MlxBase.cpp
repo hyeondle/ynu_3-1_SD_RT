@@ -1,7 +1,59 @@
 #include "../../include/MlxBase.hpp"
+#include "Camera.hpp"
+#include "HitRecord.hpp"
 
 extern "C" {
-	#include "../../minilibx/mlx.h"
+	#include "mlx.h"
+
+	// int hooking_event(int keycode, camera &cam) {
+	// 	if (keycode == KEY_W) {
+	// 		cam.move_camera_x(DELTA);
+	// 	} else if (keycode == KEY_A) {
+	// 		cam.move_camera_y(-DELTA);
+	// 	} else if (keycode == KEY_S) {
+	// 		cam.move_camera_x(-DELTA);
+	// 	} else if (keycode == KEY_D) {
+	// 		cam.move_camera_y(DELTA);
+	// 	} else if (keycode == KEY_Q) {
+	// 		cam.move_camera_z(DELTA);
+	// 	} else if (keycode == KEY_E) {
+	// 		cam.move_camera_z(-DELTA);
+	// 	}
+	// 	return 0;
+	// }
+
+	// void key_hook(Mlx *mlx, camera &cam, hittable &world) {
+	// 	mlx_hook(mlx->get_win(), 2, 2, hooking_event, cam);
+	// }
+
+	
+
+	int Mlx::hooking_event(int keycode, void *param) {
+        hook_params *params = static_cast<hook_params*>(param);
+        camera *cam = params->cam;
+        hittable *world = params->world;
+        Mlx *mlx = params->mlx;
+
+        if (keycode == KEY_W) {
+            cam->move_camera_x(DELTA, *world, mlx);
+        } else if (keycode == KEY_A) {
+            cam->move_camera_y(-DELTA, *world, mlx);
+        } else if (keycode == KEY_S) {
+            cam->move_camera_x(-DELTA, *world, mlx);
+        } else if (keycode == KEY_D) {
+            cam->move_camera_y(DELTA, *world, mlx);
+        } else if (keycode == KEY_Q) {
+            cam->move_camera_z(DELTA, *world, mlx);
+        } else if (keycode == KEY_E) {
+            cam->move_camera_z(-DELTA, *world, mlx);
+        }
+        return 0;
+    }
+
+    void Mlx::key_hook(Mlx *mlx, camera &cam, hittable &world) {
+		hook_params *params = new hook_params{&cam, &world, mlx};
+        mlx_hook(mlx->get_win(), 2, 2, (int (*)(void))hooking_event, params);
+    }
 }
 
 Mlx::Mlx()
@@ -73,8 +125,4 @@ void	Mlx::put_image_to_window()
 void	Mlx::loop_window()
 {
 	mlx_loop(mlx);
-}
-
-void	Mlx::hooker() {
-	
 }

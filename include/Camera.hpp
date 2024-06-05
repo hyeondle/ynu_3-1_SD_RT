@@ -34,6 +34,13 @@ class camera {
 		ray get_ray(int i, int j) const;
 		vector sample_square() const;
 		color ray_color(const ray &r, int depth, const hittable &world) const;
+	public :
+		void move_camera_x(double x, hittable &world, Mlx *mlx);
+		void move_camera_y(double y, hittable &world, Mlx *mlx);
+		void move_camera_z(double z, hittable &world, Mlx *mlx);
+		void rotate_camera_yaw(double yaw, hittable &world, Mlx *mlx);
+		void rotate_camera_pitch(double pitch, hittable &world, Mlx *mlx);
+		void rotate_camera_roll(double roll, hittable &world, Mlx *mlx);
 };
 
 #endif
