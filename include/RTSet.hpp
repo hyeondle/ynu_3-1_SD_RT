@@ -6,9 +6,9 @@
 #include <limits>
 #include <memory>
 
-#define SAMPLES_PER_PIXEL 1
-#define MAX_DEPTH 5
-#define GAMMA_REFLECTANCE 0.2
+extern int SAMPLES_PER_PIXEL;
+extern int MAX_DEPTH;
+extern double GAMMA_REFLECTANCE;
 
 // c++ std using declarations
 using std::fabs;
