@@ -4,11 +4,24 @@
 #include "MlxKeyList.hpp"
 
 #ifndef WIDTH
-	#define WIDTH 720
+	#define WIDTH 480
 #endif
 #ifndef HEIGHT
 	#define HEIGHT WIDTH * 9 / 16
 #endif
+#ifndef DELTA
+	#define DELTA 1.0
+#endif
+
+class camera;
+class hittable;
+class Mlx;
+
+struct hook_params {
+    camera *cam;
+    hittable *world;
+    Mlx *mlx;
+};
 
 class Mlx
 {
@@ -35,7 +48,12 @@ class Mlx
 		void	locate_pixel(int x, int y, int color);
 		void	put_image_to_window();
 		void	loop_window();
-		void	hooker();
+
+		static int hooking_event(int keycode, void *param);
+        static void key_hook(Mlx *mlx, camera &cam, hittable &world);
 };
+
+// extern "C" void key_hook(Mlx *mlx, camera &cam, hittable &world);
+// extern "C" int hooking_event(int keycode, camera &cam);
 
 #endif

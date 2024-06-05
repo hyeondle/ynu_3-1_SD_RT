@@ -87,7 +87,7 @@ int main()
 
 	cam.render(world, mlx);
 
-	mlx->put_image_to_window();
+	mlx->key_hook(mlx, cam, world);
 	mlx->loop_window();
 	return (0);
 }
