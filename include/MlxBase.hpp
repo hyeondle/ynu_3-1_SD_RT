@@ -50,6 +50,7 @@ class Mlx
 		void	loop_window();
 
 		static int hooking_event(int keycode, void *param);
+		static int press_event(int keycode, void *param);
         static void key_hook(Mlx *mlx, camera &cam, hittable &world);
 };
 

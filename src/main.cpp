@@ -26,8 +26,15 @@
 // 	// 위 구조체들 일단 하나씩 올려놓기
 // };
 
+int SAMPLES_PER_PIXEL = 0;
+int MAX_DEPTH = 0;
+double GAMMA_REFLECTANCE = 0.0;
+
 int main()
 {
+	SAMPLES_PER_PIXEL = 1;
+	MAX_DEPTH = 5;
+	GAMMA_REFLECTANCE = 0.2;
 
 	Mlx *mlx = new Mlx();
 
