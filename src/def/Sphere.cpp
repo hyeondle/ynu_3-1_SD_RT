@@ -1,5 +1,10 @@
 #include "../../include/Sphere.hpp"
 
+sphere::sphere(const point &center, double radius, shared_ptr<material> mat) : center(center), radius(fmax(0, radius)), mat(mat) {
+	auto rvec = vector(radius, radius, radius);
+	bbox = aabb(center - rvec, center + rvec);
+}
+
 bool sphere::hit(const ray &r, interval ray_t, hit_record &rec) const{
 	vector oc = center - r.origin();
 	auto a = r.direction().length_squared();
@@ -30,4 +35,8 @@ bool sphere::hit(const ray &r, interval ray_t, hit_record &rec) const{
 	rec.mat = mat;
 
 	return true;
+}
+
+aabb sphere::bounding_box() const {
+	return bbox;
 }

@@ -74,3 +74,7 @@ void	Mlx::loop_window()
 {
 	mlx_loop(mlx);
 }
+
+void	Mlx::hooker() {
+	
+}

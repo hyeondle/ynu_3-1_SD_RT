@@ -1,8 +1,10 @@
 #ifndef MLXBASE_HPP
 #define MLXBASE_HPP
 
+#include "MlxKeyList.hpp"
+
 #ifndef WIDTH
-	#define WIDTH 400
+	#define WIDTH 720
 #endif
 #ifndef HEIGHT
 	#define HEIGHT WIDTH * 9 / 16
@@ -33,6 +35,7 @@ class Mlx
 		void	locate_pixel(int x, int y, int color);
 		void	put_image_to_window();
 		void	loop_window();
+		void	hooker();
 };
 
 #endif

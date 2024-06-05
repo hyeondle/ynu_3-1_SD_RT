@@ -6,8 +6,8 @@
 #include <limits>
 #include <memory>
 
-#define SAMPLES_PER_PIXEL 50
-#define MAX_DEPTH 5
+#define SAMPLES_PER_PIXEL 80
+#define MAX_DEPTH 10
 #define GAMMA_REFLECTANCE 0.2
 
 // c++ std using declarations
