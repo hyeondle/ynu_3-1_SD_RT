@@ -14,10 +14,13 @@ SOURCE	=	src/main.cpp\
 			src/def/Color.cpp\
 			src/def/Vector.cpp\
 			src/def/Ray.cpp\
+			src/def/Camera.cpp\
 			src/def/HitRecord.cpp\
 			src/def/HitList.cpp\
 			src/def/Interval.cpp\
 			src/def/AABB.cpp\
+			src/def/BVH.cpp\
+			src/def/Material.cpp\
 			src/def/Sphere.cpp\
 			
 

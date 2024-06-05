@@ -9,11 +9,7 @@ class interval {
 
 		interval();
 		interval(double min, double max);
-		interval(const interval &a, const interval &b) {
-			min = a.min <= b.min ? a.min : b.min;
-			max = a.max >= b.max ? a.max : b.max;
-		}
-
+		interval(const interval &a, const interval &b);
 
 		double size() const;
 		bool contains(double x) const;
@@ -23,8 +19,5 @@ class interval {
 
 		static const interval empty, universe;
 };
-
-// const interval interval::empty = interval(+infinity, -infinity);
-// const interval interval::universe = interval(-infinity, +infinity);
 
 #endif
