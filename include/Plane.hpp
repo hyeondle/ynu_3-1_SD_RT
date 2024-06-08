@@ -4,7 +4,7 @@
 #include "RTSet.hpp"
 #include "HitRecord.hpp"
 
-class plane : public hitable {
+class plane : public hittable {
 	public :
 		plane(const point &center, const vector &normal, shared_ptr<material> mat);
 		bool hit(const ray &r, interval ray_t, hit_record &rec) const override;
@@ -12,6 +12,6 @@ class plane : public hitable {
 		point center;
 		vector normal;
 		shared_ptr<material> mat;
-}
+};
 
 #endif

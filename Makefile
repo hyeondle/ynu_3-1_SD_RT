@@ -21,8 +21,11 @@ SOURCE	=	src/main.cpp\
 			src/def/AABB.cpp\
 			src/def/BVH.cpp\
 			src/def/Material.cpp\
+			src/def/Phong.cpp\
+			src/def/Light.cpp\
 			src/def/Sphere.cpp\
-			
+			src/def/Plane.cpp\
+			src/def/Cylinder.cpp\
 
 
 OBJECT	=	$(SOURCE:.cpp=.o)\

@@ -22,7 +22,7 @@ public:
 	double ks = 0.5;
 	double brightness;
 
-	vector phong_lighting(const hit_record &rec, const ray &r, const hittable &world, const std::vector<light>& lights, const vector& ambient);
+	static const color phong_lighting(const hit_record &rec, const ray &r, const hittable &world, const light& lights, const vector& ambient);
 
 private:
 	vector phong_light_get(const hit_record &rec, const ray &r, const light &light, const hittable &world);

@@ -7,7 +7,7 @@
 #include "MlxBase.hpp"
 #include "Light.hpp"
 
-#define AMBIENT_R 0.1]2
+#define AMBIENT_R 0.2
 #define AMBIENT_G 0.2
 #define AMBIENT_B 0.2
 

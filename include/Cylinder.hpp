@@ -15,6 +15,6 @@ class cylinder : public hittable {
 		double height;
 		shared_ptr<material> mat;
 		aabb bbox;
-}
+};
 
 #endif
