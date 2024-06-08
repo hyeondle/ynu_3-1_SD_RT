@@ -1,4 +1,5 @@
 #include "Camera.hpp"
+#include "Phong.hpp"
 
 void camera::render(const hittable &world, Mlx *mlx) {
 	initialize();
@@ -11,6 +12,23 @@ void camera::render(const hittable &world, Mlx *mlx) {
 				pixel_color += ray_color(r, max_depth, world);
 			}
 			write_color(mlx, pixel_samples_scale * pixel_color, i, j);
+		}
+	}
+	mlx->put_image_to_window();
+}
+
+void camera::render(const hittabel &world, Mlx *mlx, light light) {
+	initialize();
+	auto ambient(AMBIENT_R, AMBIENT_G, AMBIENT_B);
+
+	for (int j = 0; j < HEIGHT; j++) {
+		for (int i = 0; i < WIDTH; i++)
+		{
+			auto u = double(i) / (WIDTH - 1);
+			auto v = double(j) / (HEIGHT - 1);
+			ray r = get_ray(u, v);
+			auto pixel_color = ray_color(r, world, light, ambient);
+			write_color(mlx, pixel_color, i, j);
 		}
 	}
 	mlx->put_image_to_window();
@@ -73,6 +91,14 @@ color camera::ray_color(const ray &r, int depth, const hittable &world) const {
 	vector unit_direction = unit(r.direction());
 	double t = 0.5 * (unit_direction.y() + 1.0);
 	return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
+}
+
+color camera::ray_color(const ray &r, const hittable &world, light &light, vector ambient) const {
+	hit_record rec;
+	if (world.hit(r, interval(0.001, infinity), rec)) {
+		return phong::phong_lighting(rec, r, world, light, ambient);
+	}
+	return color(0, 0, 0);
 }
 
 // camera movement and rotation
