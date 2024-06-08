@@ -9,6 +9,10 @@ class material {
 		virtual ~material() = default;
 
 		virtual bool scatter(const ray &r_in, const hit_record &rec, color &attenuation, ray &scattered) const;
+
+		color g_albedo() const { return albedo; }
+	private :
+		color albedo;
 };
 
 class lambertian : public material {
@@ -26,7 +30,6 @@ class metal : public material {
 		metal(const color &albedo, double fuzz);
 
 		bool scatter(const ray &r_in, const hit_record &rec, color &attenuation, ray &scattered) const override;
-
 	private :
 		color albedo;
 		double fuzz;
@@ -42,6 +45,7 @@ class dielectric : public material {
 		double refraction_index;
 
 		static double reflectance(double cosine, double refraction_index);
+		color albedo = color(1.0, 1.0, 1.0);
 };
 
 #endif

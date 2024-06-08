@@ -10,6 +10,9 @@ extern int SAMPLES_PER_PIXEL;
 extern int MAX_DEPTH;
 extern double GAMMA_REFLECTANCE;
 
+#define LUMEN 3
+#define EPSILON 1e-6
+
 // c++ std using declarations
 using std::fabs;
 using std::make_shared;

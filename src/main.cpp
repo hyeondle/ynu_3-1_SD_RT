@@ -9,8 +9,6 @@
 #include "../include/Material.hpp"
 #include "../include/Sphere.hpp"
 #include "Light.hpp"
-#include "Plane.hpp"
-#include "Cylinder.hpp"
 #include "Phong.hpp"
 
 // #define WIDTH 1920

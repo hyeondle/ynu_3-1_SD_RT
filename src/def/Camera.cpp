@@ -25,10 +25,10 @@ void camera::render(const hittable &world, Mlx *mlx, light light) {
 	for (int j = 0; j < HEIGHT; j++) {
 		for (int i = 0; i < WIDTH; i++)
 		{
-			auto u = double(i) / (WIDTH - 1);
-			auto v = double(j) / (HEIGHT - 1);
-			ray r = get_ray(u, v);
-			auto pixel_color = ray_color(r, world, light, ambient);
+			// auto u = double(i) / (WIDTH - 1);
+			// auto v = double(j) / (HEIGHT - 1);
+			ray r = get_ray(i, j);
+			color pixel_color = ray_color(r, world, light, ambient);
 			write_color(mlx, pixel_color, i, j);
 		}
 	}
@@ -96,8 +96,9 @@ color camera::ray_color(const ray &r, int depth, const hittable &world) const {
 
 color camera::ray_color(const ray &r, const hittable &world, const light &light, vector ambient) const {
 	hit_record rec;
+	phong phong;
 	if (world.hit(r, interval(0.001, infinity), rec)) {
-		return phong::phong_lighting(rec, r, world, light, ambient);
+		return phong.phong_lighting(rec, r, world, light, ambient);
 	}
 	return color(0, 0, 0);
 }
