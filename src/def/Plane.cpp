@@ -12,9 +12,9 @@ bool plane::hit(const ray &r, interval ray_t, hit_record &rec) const {
         if (t > ray_t.min && t < ray_t.max) {
             rec.t = t;
             rec.p = r.at(t);
-            rec.normal = unit_vector(normal);
+            rec.normal = unit(normal);
             rec.set_face_normal(r, rec.normal);
-            rec.mat_ptr = mat;
+            rec.mat = mat;
             return true;
         }
     }

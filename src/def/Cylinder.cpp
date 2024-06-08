@@ -72,9 +72,9 @@ bool cylinder::hit(const ray &r, interval ray_t, hit_record &rec) const {
         rec.set_face_normal(r, outward_normal);
     } else {
         vector op = rec.p - center;
-        rec.normal = unit_vector(op - axis * dot(op, axis));
+        rec.normal = unit(op - axis * dot(op, axis));
         rec.set_face_normal(r, rec.normal);
     }
-    rec.mat_ptr = mat;
+    rec.mat = mat;
     return true;
 }

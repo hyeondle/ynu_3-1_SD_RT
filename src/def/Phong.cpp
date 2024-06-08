@@ -1,17 +1,21 @@
 #include "Phong.hpp"
+#include "Material.hpp"
 
-color phong::phong_lighting(const hit_record &rec, const ray &r, const hittable &world, const light& lights, const vector& ambient) {
+const color phong::phong_lighting(const hit_record &rec, const ray &r, const hittable &world, const light& lights, const vector& ambient) {
 	color light_color(0, 0, 0);
 
-	light_color += phong_light_get(rec, r, light, world);
+	light_color += phong_light_get(rec, r, lights, world);
 
 	light_color += ambient;
 
-	return min(light_color * (rec.albedo / 255.999), color(1, 1, 1));
+	color albedo = rec.mat->g_albedo();
+
+	// return (light_color * (albedo / 255.999));
+	return light_color;
 }
 
-color phong::phong_light_get(const hit_record &rec, const ray &r, const light &light, const hittable &world) {
-	light_direction = light.position - rec.p;
+color phong::phong_light_get(const hit_record &rec, const ray &r, const light &lights, const hittable &world) {
+	light_direction = lights.center - rec.p;
 	light_length = light_direction.length();
 	light_ray = ray(rec.p + rec.normal * EPSILON, light_direction);
 
@@ -19,15 +23,15 @@ color phong::phong_light_get(const hit_record &rec, const ray &r, const light &l
 		return vector(0, 0, 0);
 	}
 
-	light_direction = unit_vector(light_direction);
+	light_direction = unit(light_direction);
 	kd = std::max(dot(rec.normal, light_direction), 0.0);
-	diffuse = light.color * kd;
+	diffuse = lights.color * kd;
 
-	view_direction = unit_vector(-r.direction());
+	view_direction = unit(-r.direction());
 	reflect_direction = reflect(-light_direction, rec.normal);
 	spec = pow(std::max(dot(view_direction, reflect_direction), 0.0), ksn);
-	specular = light.color * ks * spec;
-	brightness = light.brightness * LUMEN;
+	specular = lights.color * ks * spec;
+	brightness = lights.brightness * LUMEN;
 
 	return color((diffuse + specular) * brightness);
 }

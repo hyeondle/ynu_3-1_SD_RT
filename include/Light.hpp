@@ -6,8 +6,7 @@
 
 class light : public hittable {
 public:
-	light(const point &center, const color &color, double brightness)
-		: center(center), color(color), brightness(brightness) {}
+	light(const point &center, const class color &color_, double brightness);
 
 	bool hit(const ray &r, interval ray_t, hit_record &rec) const override {
 		return false;
