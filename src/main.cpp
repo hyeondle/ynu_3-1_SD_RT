@@ -32,6 +32,7 @@ double GAMMA_REFLECTANCE = 0.0;
 
 int main()
 {
+	int flag = 2;
 	SAMPLES_PER_PIXEL = 1;
 	MAX_DEPTH = 5;
 	GAMMA_REFLECTANCE = 0.2;
@@ -92,7 +93,12 @@ int main()
 	cam.lookat = point(0,0,0);
 	cam.vup = vector(0,1,0);
 
-	cam.render(world, mlx);
+	auto light(1,1,1);
+
+	if (flag == 1)
+		cam.render(world, mlx);
+	else if (flag == 2)
+		cam.render(world, mlx, light);
 
 	mlx->key_hook(mlx, cam, world);
 	mlx->loop_window();

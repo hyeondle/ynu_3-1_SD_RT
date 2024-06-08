@@ -5,6 +5,11 @@
 #include "HitRecord.hpp"
 #include "Material.hpp"
 #include "MlxBase.hpp"
+#include "Light.hpp"
+
+#define AMBIENT_R 0.1]2
+#define AMBIENT_G 0.2
+#define AMBIENT_B 0.2
 
 class camera {
 	public :
@@ -20,6 +25,7 @@ class camera {
 		vector vup = vector(0,1,0);
 
 		void render(const hittable &world, Mlx *mlx);
+		void render(const hittable &world, Mlx *mlx, light light);
 	private :
 		//var
 		int image_height;
@@ -34,6 +40,7 @@ class camera {
 		ray get_ray(int i, int j) const;
 		vector sample_square() const;
 		color ray_color(const ray &r, int depth, const hittable &world) const;
+		color ray_color(const ray &r, const hittable &world, const light &light, vector ambient) const;
 	public :
 		void move_camera_x(double x, hittable &world, Mlx *mlx);
 		void move_camera_y(double y, hittable &world, Mlx *mlx);
