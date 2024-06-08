@@ -1,5 +1,6 @@
 #include "Camera.hpp"
 #include "Phong.hpp"
+#include "Light.hpp"
 
 void camera::render(const hittable &world, Mlx *mlx) {
 	initialize();
@@ -17,9 +18,9 @@ void camera::render(const hittable &world, Mlx *mlx) {
 	mlx->put_image_to_window();
 }
 
-void camera::render(const hittabel &world, Mlx *mlx, light light) {
+void camera::render(const hittable &world, Mlx *mlx, light light) {
 	initialize();
-	auto ambient(AMBIENT_R, AMBIENT_G, AMBIENT_B);
+	vector ambient(AMBIENT_R, AMBIENT_G, AMBIENT_B);
 
 	for (int j = 0; j < HEIGHT; j++) {
 		for (int i = 0; i < WIDTH; i++)
@@ -93,7 +94,7 @@ color camera::ray_color(const ray &r, int depth, const hittable &world) const {
 	return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
 }
 
-color camera::ray_color(const ray &r, const hittable &world, light &light, vector ambient) const {
+color camera::ray_color(const ray &r, const hittable &world, const light &light, vector ambient) const {
 	hit_record rec;
 	if (world.hit(r, interval(0.001, infinity), rec)) {
 		return phong::phong_lighting(rec, r, world, light, ambient);

@@ -9,8 +9,12 @@ public:
 	light(const point &center, const color &color, double brightness)
 		: center(center), color(color), brightness(brightness) {}
 
-	virtual bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
-		return false; // Lights don't interact with rays in this context
+	bool hit(const ray &r, interval ray_t, hit_record &rec) const override {
+		return false;
+	}
+
+	aabb bounding_box() const override {
+		return aabb(center, center);
 	}
 
 	point center;

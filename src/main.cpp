@@ -8,7 +8,10 @@
 #include "../include/HitList.hpp"
 #include "../include/Material.hpp"
 #include "../include/Sphere.hpp"
-
+#include "Light.hpp"
+#include "Plane.hpp"
+#include "Cylinder.hpp"
+#include "Phong.hpp"
 
 // #define WIDTH 1920
 // #define HEIGHT 1080
@@ -93,7 +96,7 @@ int main()
 	cam.lookat = point(0,0,0);
 	cam.vup = vector(0,1,0);
 
-	auto light(1,1,1);
+	light light(point(0, 10, 0), color(1, 1, 1), 0.2);
 
 	if (flag == 1)
 		cam.render(world, mlx);
