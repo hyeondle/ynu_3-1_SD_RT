@@ -26,6 +26,8 @@ class camera {
 
 		void render(const hittable &world, Mlx *mlx);
 		void render(const hittable &world, Mlx *mlx, light light);
+
+		light lights = light(point(0, 10, 0), color(1, 1, 1), 0.2);
 	private :
 		//var
 		int image_height;
