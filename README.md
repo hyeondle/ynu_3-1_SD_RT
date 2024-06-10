@@ -7,13 +7,21 @@ MacOS
 
 how to run
 :
-make run
+type
+"make run"
+in root directory
+
+implemented
+:
+simple phong model (binary color)
+diffuse rendering model (can define reflect depth, sample pixel amount)
+moving camera as normal coordinate system (x y z)
+material
 
 
-todo : (2024/6/3)
-add object list (hittable list) -> as vector
-add few more object
-add phong model
-
-add key hook & event listener
-
+not implemented
+:
+multiple color phong model
+texture adaption
+moving camera as cam coordinate system (yaw roll pitch)
+map parser
