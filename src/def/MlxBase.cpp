@@ -1,6 +1,7 @@
 #include "../../include/MlxBase.hpp"
 #include "Camera.hpp"
 #include "HitRecord.hpp"
+#include "Light.hpp"
 
 extern "C" {
 	#include "mlx.h"

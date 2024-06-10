@@ -94,12 +94,12 @@ int main()
 	cam.lookat = point(0,0,0);
 	cam.vup = vector(0,1,0);
 
-	light light(point(0, 10, 0), color(1, 1, 1), 0.2);
+	light lights(point(0, 10, 0), color(1, 1, 1), 0.2);
 
 	if (flag == 1)
 		cam.render(world, mlx);
 	else if (flag == 2)
-		cam.render(world, mlx, light);
+		cam.render(world, mlx, lights);
 
 	mlx->key_hook(mlx, cam, world);
 	mlx->loop_window();

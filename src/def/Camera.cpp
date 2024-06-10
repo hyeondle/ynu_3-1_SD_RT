@@ -108,19 +108,19 @@ color camera::ray_color(const ray &r, const hittable &world, const light &light,
 void camera::move_camera_x(double delta, hittable &world, Mlx *mlx) {
     lookfrom.e[0] += delta;
     lookat.e[0] += delta;
-    render(world, mlx);
+    render(world, mlx, lights);
 }
 
 void camera::move_camera_y(double delta, hittable &world, Mlx *mlx) {
     lookfrom.e[1] += delta;
     lookat.e[1] += delta;
-    render(world, mlx);
+    render(world, mlx, lights);
 }
 
 void camera::move_camera_z(double delta, hittable &world, Mlx *mlx) {
     lookfrom.e[2] += delta;
     lookat.e[2] += delta;
-    render(world, mlx);
+    render(world, mlx, lights);
 }
 
 void camera::rotate_camera_yaw(double yaw, hittable &world, Mlx *mlx) {
@@ -133,7 +133,7 @@ void camera::rotate_camera_yaw(double yaw, hittable &world, Mlx *mlx) {
         sin_theta * look_dir.x() + cos_theta * look_dir.z()
     );
     lookat = lookfrom + look_dir;
-    render(world, mlx);
+    render(world, mlx, lights);
 }
 
 void camera::rotate_camera_pitch(double pitch, hittable &world, Mlx *mlx) {
@@ -146,7 +146,7 @@ void camera::rotate_camera_pitch(double pitch, hittable &world, Mlx *mlx) {
         sin_theta * look_dir.y() + cos_theta * look_dir.z()
     );
     lookat = lookfrom + look_dir;
-    render(world, mlx);
+    render(world, mlx, lights);
 }
 
 void camera::rotate_camera_roll(double roll, hittable &world, Mlx *mlx) {
@@ -159,5 +159,5 @@ void camera::rotate_camera_roll(double roll, hittable &world, Mlx *mlx) {
 		look_dir.z()
 	);
 	lookat = lookfrom + look_dir;
-	render(world, mlx);
+	render(world, mlx, lights);
 }
